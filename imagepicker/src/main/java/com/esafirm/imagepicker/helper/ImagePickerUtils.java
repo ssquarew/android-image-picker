@@ -54,9 +54,15 @@ public class ImagePickerUtils {
     }
 
     public static String getNameFromFilePath(String path) {
-        if (path.contains(File.separator)) {
-            return path.substring(path.lastIndexOf(File.separator) + 1);
+        try {
+            if (path.contains(File.separator)) {
+                return path.substring(path.lastIndexOf(File.separator) + 1);
+            }
+        }catch (StringIndexOutOfBoundsException e){
+
         }
+
+
         return path;
     }
 
@@ -77,12 +83,21 @@ public class ImagePickerUtils {
     }
 
     public static boolean isGifFormat(Image image) {
-        String extension = image.getPath().substring(image.getPath().lastIndexOf(".") + 1, image.getPath().length());
-        return extension.equalsIgnoreCase("gif");
+        try {
+            String extension = image.getPath().substring(image.getPath().lastIndexOf(".") + 1, image.getPath().length());
+            return extension.equalsIgnoreCase("gif");
+        }catch (StringIndexOutOfBoundsException e){
+            return false;
+        }
+
     }
 
     public static boolean isVideoFormat(Image image) {
-        String mimeType = URLConnection.guessContentTypeFromName(image.getPath());
-        return mimeType != null && mimeType.startsWith("video");
+        try {
+            String mimeType = URLConnection.guessContentTypeFromName(image.getPath());
+            return mimeType != null && mimeType.startsWith("video");
+        }catch (StringIndexOutOfBoundsException e){
+            return false;
+        }
     }
 }
