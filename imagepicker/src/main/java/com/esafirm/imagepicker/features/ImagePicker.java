@@ -163,6 +163,11 @@ public abstract class ImagePicker {
         return this;
     }
 
+    public ImagePicker includeAnimation(boolean includeAnimation) {
+        config.setIncludeAnimation(includeAnimation);
+        return this;
+    }
+
     public ImagePicker imageDirectory(String directory) {
         config.setImageDirectory(directory);
         return this;
@@ -193,13 +198,13 @@ public abstract class ImagePicker {
         return this;
     }
 
-    protected ImagePickerConfig getConfig() {
+    public ImagePickerConfig getConfig() {
         LocaleManager.setLanguange(config.getLanguage());
-        return config;
+        return ConfigUtils.checkConfig(config);
     }
 
     public Intent getIntent(Context context) {
-        ImagePickerConfig config = ConfigUtils.checkConfig(getConfig());
+        ImagePickerConfig config = getConfig();
         Intent intent = new Intent(context, ImagePickerActivity.class);
         intent.putExtra(ImagePickerConfig.class.getSimpleName(), config);
         return intent;

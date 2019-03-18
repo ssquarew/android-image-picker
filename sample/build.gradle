@@ -34,12 +34,15 @@ repositories {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation "com.github.bumptech.glide:glide:4.5.0"
-    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.github.bumptech.glide:glide:4.9.0"
+    implementation "androidx.appcompat:appcompat:1.0.2"
 
     /* Development */
     implementation project(':rximagepicker')
     implementation project(':imagepicker')
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
 
     /* Release Check */
 //    final imagePickerVersion = '1.13.1'
